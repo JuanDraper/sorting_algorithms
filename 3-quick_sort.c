@@ -35,7 +35,7 @@ int partScheme(int *array, int size, int left, int right)
                 if (array[j] <= p)
                 {
                         swinger(&array[pi], &array[j]);
-                        if (part_index != j)
+                        if (pi != j)
                                 print_array(array, size);
                         pi++;
                 }
