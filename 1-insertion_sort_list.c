@@ -13,21 +13,24 @@ void insertion_sort_list(listint_t **list)
 	while (i)
 	{
 		f = i;
-		while (f->prev || f->n < f->prev)
+		while (f->prev || f->n < f->prev->n)
 		{
 			f->prev->next = f->next;
 			if (f->next)
+			{
 				f->next->prev = f->prev;
-
 			}
+
 		f->next = f->prev;
 		f->prev = f->prev->prev;
 		f->prev->next = f;
 		if (!f->prev)
 			*list = f;
 		else
+		
 			f->prev->next = f;
 		print_list(*list);
+		}
 	}
 	i = i->next;
 }
