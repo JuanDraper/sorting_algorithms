@@ -7,17 +7,17 @@ void insertion_sort_list(listint_t **list)
 	listint_t *i;
 	listint_t *f;
 
-	if(!list || !(*list))
+	if (!list || !(*list))
 		return;
-	i = list
-	while(i)
+	i = *list;
+	while (i)
 	{
 		f = i;
-		while(f->prev || f->n < f->prev)
-			{
-				f->prev->next = f->next;
-				if (f->next)
-					f->next->prev = f->prev;
+		while (f->prev || f->n < f->prev)
+		{
+			f->prev->next = f->next;
+			if (f->next)
+				f->next->prev = f->prev;
 
 			}
 		f->next = f->prev;
