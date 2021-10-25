@@ -55,7 +55,7 @@ void insertion_sort_list(listint_t **list)
 	{
 		while (left != NULL && left->n > right->n)
 		{
-			*list = swap(left, right, *list);
+			*list = swinger(left, right, *list);
 			print_list(*list);
 			left = right->prev;
 		}
