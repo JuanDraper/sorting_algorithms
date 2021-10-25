@@ -1,39 +1,67 @@
 #include "sort.h"
+
 /**
- * insertion_sort_list - Function sorted the doubly linked list in ascending
- * @list: list node
- * Return: Success Always 0
+ * swinger - swaps two contiguous doubly linked nodes
+ * @left: left node
+ * @right: right node
+ * @head: Head of the list
+ * Return: void
+ */
+listint_t *swinger(listint_t *left, listint_t *right, listint_t *head)
+{
+	listint_t *t;
+
+	if (right->next)
+		right->next->prev = left;
+	if (left->prev)
+		left->prev->next = right;
+
+	right->prev = left->prev;
+	left->next = right->next;
+	right->next = left;
+	left->prev = right;
+
+	t = left;
+	left = right;
+	right = t;
+
+	if (left->prev == NULL)
+		return (left);
+	else
+		return (head);
+}
+
+/**
+ * insertion_sort_list - run insertion sort over a
+ * double linked list
+ * @list: pointer to a dlinked list
+ * Return: void
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *i, *f;
+	listint_t *left, *right, *ptr;
 
-	if (!list || !(*list))
+	if (list == NULL || *list == NULL)
 		return;
-	i = *list;
 
-	while (i)
+	if ((*list)->next == NULL)
+		return;
+
+	ptr = (*list)->next;
+	right = ptr;
+	left = ptr->prev;
+
+	while (ptr != NULL)
 	{
-		f = i;
-		while (f->prev && f->n < f->prev->n)
+		while (left != NULL && left->n > right->n)
 		{
-			f->prev->next = f->next;
-
-			if (f->next)
-			{
-				f->next->prev = f->prev;
-			}
-
-			f->next = f->prev;
-			f->prev = f->prev->prev;
-			f->next->prev = f;
-
-			if (!f->prev)
-				*list = f;
-			else
-				f->prev->next = f;
+			*list = swap(left, right, *list);
 			print_list(*list);
+			left = right->prev;
 		}
-		i = i->next;
+		left = ptr;
+		ptr = ptr->next;
+		right = ptr;
 	}
+
 }
