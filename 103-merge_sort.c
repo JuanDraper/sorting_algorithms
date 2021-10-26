@@ -2,7 +2,7 @@
 #include "sort.h"
 
 /**
- * merge - merge function 
+ * merge - merge function
  * @array: pointer to array
  * @size: size of the array
  * @left: pointer to left array
