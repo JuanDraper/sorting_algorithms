@@ -14,6 +14,16 @@ typedef struct listint_s
 	struct listint_s *prev;
 	struct listint_s *next;
 } listint_t;
+/**
+ * struct outcome_s - cocktail outcome
+ * @status: swapped = 1, not swapped = 0
+ * @head: Head to the sorted list
+ */
+typedef struct outcome_s
+{
+	int status;
+	listint_t *head;
+} outcome;
 
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
